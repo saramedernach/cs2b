@@ -134,8 +134,28 @@ public:
 
     String_List *remove_at_current() {
     
-        _prev_to_current->next = _prev_to_current->next->next;
+        if (_prev_to_current == _tail) {
+        
+            return this;
+
+        }
+        else if (_prev_to_current->next != _tail) {
+
+            Node* temp = _prev_to_current->next;
+            _prev_to_current->next = _prev_to_current->next->next;
+            delete temp;
+
+        }
+        else if (_prev_to_current->next == _tail) {
+
+            Node* temp = _tail;
+            _tail = _prev_to_current;
+            delete temp;
+
+        }
+        
         _size--;
+
         return this;
 
     }
