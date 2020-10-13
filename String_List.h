@@ -74,17 +74,7 @@ public:
     
         Node* temp = _prev_to_current;
         insert_at_current(s);
-        _prev_to_current = temp;
-
-        //Node* newNode = new Node();
-        //newNode->data = s;
-        //newNode->next = nullptr;
-        //_prev_to_current->next = newNode;
-        //_tail = newNode;
-
-        //_prev_to_current = temp;
-
-        //_size++;
+        _prev_to_current = temp->next;
 
         return this;
 
@@ -92,11 +82,6 @@ public:
 
     String_List *push_front(std::string s) {
     
-        //Node* temp = _prev_to_current;
-        //_head->next = temp;
-        //insert_at_current(s);
-        //_prev_to_current = temp;
-
         Node* newNode = new Node();
         newNode->data = s;
         newNode->next = _head->next;
@@ -124,7 +109,7 @@ public:
     
         if (_prev_to_current != nullptr) {
 
-            return _prev_to_current->data;
+            return _prev_to_current->next->data;
 
         }
 
@@ -153,7 +138,7 @@ public:
             delete temp;
 
         }
-        
+
         _size--;
 
         return this;
@@ -211,10 +196,10 @@ public:
 
         std::string list = "# String_List - " + std::to_string(_size) + " entries total. Starting at cursor:\n";
 
-        /*int count = 0;
-        while (count < 25 || count < _size) {
+        int count = 0;
+        while (count < 25) {
 
-            list += _prev_to_current->next->data + "\n";
+            list += _prev_to_current->data + "\n";
 
         }
 
@@ -222,7 +207,7 @@ public:
 
             list += "...\n";
 
-        }*/
+        }
 
         return list;
 
@@ -232,3 +217,4 @@ public:
 
 };
 #endif
+    
